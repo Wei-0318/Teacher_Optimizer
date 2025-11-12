@@ -1,0 +1,316 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: Learning-test
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.2.6@e2665624a156f52160927bceac9e169bd7e5ae6b936ae82575e14c90af390e6e
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1762786726374-source-1762883421824-target
+      selected: false
+      source: '1762786726374'
+      sourceHandle: source
+      target: '1762883421824'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1762883421824-source-1762936902390-target
+      selected: false
+      source: '1762883421824'
+      sourceHandle: source
+      target: '1762936902390'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1762936902390-source-1762938291948-target
+      source: '1762936902390'
+      sourceHandle: source
+      target: '1762938291948'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 開始
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: 請輸入你想了解的問題或主題
+          max_length: 256
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: user_question
+      height: 86
+      id: '1762786726374'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1762786726374'
+          - user_question
+        desc: ''
+        model:
+          completion_params:
+            frequency_penalty: 0.3
+            max_tokens: 2001
+            temperature: 0.7
+          mode: chat
+          name: gpt-4
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: bd87da3b-099a-4c15-b05e-ac7e4aec6ca4
+          role: system
+          text: '你是一位資深的教育專家，專門將簡單的問題轉化為有深度的教學機會。你的角色是：
+
+            1. 分析問題的教育價值
+
+            2. 優化問題使其更具體、更有深度
+
+            3. 從多個角度延伸問題
+
+            4. 建立知識架構
+
+
+            回應必須是有效的JSON格式。'
+        - id: 6cf7ccfb-ee3c-4597-ac99-7884d5d65190
+          role: user
+          text: "請分析並優化以下問題：\n\n【原始問題】\n{{#1762786726374.user_question#}}\n\n【分析與優化要求】\n\
+            \n請完成以下任務並以JSON格式輸出：\n\n1. **問題診斷**\n   - 識別問題的核心概念\n   - 判斷問題的複雜度（初級/中級/高級）\n\
+            \   - 推測提問者的意圖\n\n2. **問題重構**\n   - 將問題改寫得更精確\n   - 添加必要的背景脈絡\n   - 明確界定討論範圍\n\
+            \n3. **多維度延伸**（至少3個不同角度）\n   - 理論基礎：相關的基本原理是什麼？\n   - 實際應用：如何在現實中運用？\n\
+            \   - 比較分析：與類似概念有何異同？\n   - 批判思考：有哪些限制或爭議？\n   - 未來發展：未來趨勢如何？\n\n4. **知識地圖**\n\
+            \   - 主要涉及的學科領域\n   - 需要的前置知識\n   - 可以延伸學習的進階主題\n\n【輸出JSON格式】\n{\n  \"\
+            problem_analysis\": {\n    \"core_concept\": \"識別出的核心概念\",\n    \"complexity_level\"\
+            : \"初級/中級/高級\",\n    \"learner_intent\": \"學習者可能的目的\"\n  },\n  \"optimized_question\"\
+            : {\n    \"refined_version\": \"優化後更精確的問題表述\",\n    \"context\": \"補充的背景資訊\"\
+            ,\n    \"scope\": \"明確的討論範圍\"\n  },\n  \"extended_questions\": [\n   \
+            \ {\n      \"perspective\": \"理論基礎\",\n      \"question\": \"具體的延伸問題\"\
+            ,\n      \"learning_value\": \"這個問題的教學價值\"\n    },\n    {\n      \"perspective\"\
+            : \"實際應用\", \n      \"question\": \"具體的延伸問題\",\n      \"learning_value\"\
+            : \"這個問題的教學價值\"\n    },\n    {\n      \"perspective\": \"比較分析\",\n   \
+            \   \"question\": \"具體的延伸問題\", \n      \"learning_value\": \"這個問題的教學價值\"\
+            \n    }\n  ],\n  \"knowledge_structure\": {\n    \"primary_domain\": \"\
+            主要知識領域\",\n    \"related_fields\": [\"相關領域1\", \"相關領域2\"],\n    \"prerequisites\"\
+            : [\"前置知識1\", \"前置知識2\"],\n    \"advanced_topics\": [\"進階主題1\", \"進階主題2\"\
+            ]\n  }\n}"
+        selected: false
+        structured_output_enabled: false
+        title: 師Q01
+        type: llm
+        vision:
+          enabled: false
+      height: 86
+      id: '1762883421824'
+      position:
+        x: 363
+        y: 282
+      positionAbsolute:
+        x: 363
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "def main(teacher_output: str) -> dict:\n    \"\"\"\n    解析老師的輸出，提取結構化數據\n\
+          \    \"\"\"\n    import json\n    import re\n    \n    try:\n        # 嘗試找到JSON部分（處理可能的額外文字）\n\
+          \        json_match = re.search(r'\\{.*\\}', teacher_output, re.DOTALL)\n\
+          \        \n        if json_match:\n            json_str = json_match.group()\n\
+          \            data = json.loads(json_str)\n            \n            # 驗證必要欄位\n\
+          \            required_fields = ['problem_analysis', 'optimized_question',\
+          \ \n                             'extended_questions', 'knowledge_structure']\n\
+          \            \n            for field in required_fields:\n             \
+          \   if field not in data:\n                    raise ValueError(f\"Missing\
+          \ required field: {field}\")\n            \n            # 格式化輸出供後續使用（成功時也返回所有欄位）\n\
+          \            return {\n                \"status\": \"success\",\n      \
+          \          \"parsed_data\": data,\n                \"main_question\": data['optimized_question']['refined_version'],\n\
+          \                \"extended_questions_list\": [\n                    q['question']\
+          \ for q in data['extended_questions']\n                ],\n            \
+          \    \"formatted_output\": format_for_display(data),\n                \"\
+          error_message\": \"\",  # 成功時為空字串\n                \"raw_output\": teacher_output\
+          \  # ← 添加這個\n            }\n        else:\n            raise ValueError(\"\
+          No JSON found in output\")\n            \n    except json.JSONDecodeError\
+          \ as e:\n        return {\n            \"status\": \"error\",\n        \
+          \    \"error_message\": f\"JSON解析失敗: {str(e)}\",\n            \"raw_output\"\
+          : teacher_output,\n            \"main_question\": \"\",\n            \"\
+          extended_questions_list\": [],\n            \"formatted_output\": f\"解析錯誤：{str(e)}\"\
+          ,\n            \"parsed_data\": {}\n        }\n    except Exception as e:\n\
+          \        return {\n            \"status\": \"error\", \n            \"error_message\"\
+          : str(e),\n            \"raw_output\": teacher_output,\n            \"main_question\"\
+          : \"\",\n            \"extended_questions_list\": [],\n            \"formatted_output\"\
+          : f\"處理錯誤：{str(e)}\",\n            \"parsed_data\": {}\n        }\n\ndef\
+          \ format_for_display(data: dict) -> str:\n    \"\"\"\n    將數據格式化為易讀的文本\n\
+          \    \"\"\"\n    output = []\n    \n    # 問題分析\n    analysis = data['problem_analysis']\n\
+          \    output.append(\"\U0001F4CA **問題分析**\")\n    output.append(f\"- 核心概念：{analysis['core_concept']}\"\
+          )\n    output.append(f\"- 複雜度：{analysis['complexity_level']}\")\n    output.append(f\"\
+          - 學習意圖：{analysis['learner_intent']}\\n\")\n    \n    # 優化後的問題\n    optimized\
+          \ = data['optimized_question']\n    output.append(\"\U0001F3AF **優化後的問題**\"\
+          )\n    output.append(f\"主要問題：{optimized['refined_version']}\")\n    output.append(f\"\
+          背景說明：{optimized['context']}\")\n    output.append(f\"討論範圍：{optimized['scope']}\\\
+          n\")\n    \n    # 延伸問題\n    output.append(\"\U0001F50D **延伸探討方向**\")\n \
+          \   for i, q in enumerate(data['extended_questions'], 1):\n        output.append(f\"\
+          \\n{i}. [{q['perspective']}]\")\n        output.append(f\"   問題：{q['question']}\"\
+          )\n        output.append(f\"   價值：{q['learning_value']}\")\n    \n    #\
+          \ 知識結構\n    knowledge = data['knowledge_structure']\n    output.append(\"\
+          \\n\U0001F4DA **知識架構**\")\n    output.append(f\"- 主要領域：{knowledge['primary_domain']}\"\
+          )\n    output.append(f\"- 相關領域：{', '.join(knowledge['related_fields'])}\"\
+          )\n    output.append(f\"- 前置知識：{', '.join(knowledge['prerequisites'])}\"\
+          )\n    output.append(f\"- 進階主題：{', '.join(knowledge['advanced_topics'])}\"\
+          )\n    \n    return \"\\n\".join(output)"
+        code_language: python3
+        outputs:
+          error_message:
+            children: null
+            type: string
+          extended_questions_list:
+            children: null
+            type: array[string]
+          formatted_output:
+            children: null
+            type: string
+          main_question:
+            children: null
+            type: string
+          parsed_data:
+            children: null
+            type: object
+          raw_output:
+            children: null
+            type: string
+          status:
+            children: null
+            type: string
+        selected: false
+        title: 代碼執行
+        type: code
+        variables:
+        - value_selector:
+          - '1762883421824'
+          - text
+          value_type: string
+          variable: teacher_output
+      height: 50
+      id: '1762936902390'
+      position:
+        x: 665.7796087070392
+        y: 282
+      positionAbsolute:
+        x: 665.7796087070392
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1762936902390'
+          - formatted_output
+          value_type: string
+          variable: formatted_output
+        selected: false
+        title: 問題分析結果
+        type: end
+      height: 87
+      id: '1762938291948'
+      position:
+        x: 975.6437028024095
+        y: 282
+      positionAbsolute:
+        x: 975.6437028024095
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -44.66591941731116
+      y: -83.90110045148504
+      zoom: 0.8408964261104206
+  rag_pipeline_variables: []
