@@ -247,7 +247,7 @@ def format_for_display(data: dict) -> str:
   
 輸出變數 4:
   變數名: extended_questions_list
-  類型: Array
+  類型: Array[String]
   
 輸出變數 5:
   變數名: parsed_data
