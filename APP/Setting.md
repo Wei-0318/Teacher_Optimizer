@@ -263,6 +263,12 @@ def format_for_display(data: dict) -> str:
 ```
 
 ## 5️⃣ 添加結束節點
+<img src="/APP/S1-4.png" width="40%">
+
+```YAML
+結束節點配置:
+  輸出變量: {{Parse_JSON.formatted_output}}
+```
 
 ## 6️⃣ 
 
