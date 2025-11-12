@@ -1,4 +1,8 @@
+<div align="center">
+  
 # Array 輸出變數類型對照表
+
+</div>
 
 ```yaml
 輸出變數配置：
