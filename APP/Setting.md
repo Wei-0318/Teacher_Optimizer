@@ -120,10 +120,40 @@
 }
 ```
 
+## 4️⃣ 添加代碼節點 - 解析JSON
 
-## 4️⃣ 
+### 輸出變量
+```YAML
+輸出變數 1:
+  變數名: status
+  類型: String
+  
+輸出變數 2:
+  變數名: main_question
+  類型: String
+  
+輸出變數 3:
+  變數名: formatted_output
+  類型: String
+  
+輸出變數 4:
+  變數名: extended_questions_list
+  類型: Array
+  
+輸出變數 5:
+  變數名: parsed_data
+  類型: Object
 
-## 5️⃣ 
+輸出變數 6:
+  變數名: error_message
+  類型: String
+
+輸出變數 7:
+  變數名: raw_output
+  類型: String
+```
+
+## 5️⃣ 添加結束節點
 
 ## 6️⃣ 
 
