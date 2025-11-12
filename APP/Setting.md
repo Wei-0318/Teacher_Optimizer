@@ -32,7 +32,7 @@
 模型: gpt-5 (或 claude-3-opus)
 ```
 
-### 系統提示詞 (System Prompt)
+### 3. 系統提示詞 (System Prompt)
 ```MARKDOWN
 你是一位資深的教育專家，專門將簡單的問題轉化為有深度的教學機會。你的角色是：
 1. 分析問題的教育價值
@@ -43,7 +43,7 @@
 回應必須是有效的JSON格式。
 ```
 
-### 用戶提示詞 (User Prompt)
+### 4. 用戶提示詞 (User Prompt)
 
 > [!CAUTION]
 > 如果貼上去後 `{{start.user_question}}` 變量沒有自動套用，要點擊 `{x}` 手動套用
@@ -124,9 +124,14 @@
 
 <img src="/APP/S1-3.png" width="40%">
 
-### 輸入變量
+### 1. 輸入變量
+```YAML
+變數名稱: teacher_output
+變數類型: String
+變數來源: 點擊輸入框，選擇 {前一節點名稱}.text
+```
 
-### 代碼
+### 2. 代碼
 ```python
 def main(teacher_output: str) -> dict:
     """
@@ -226,7 +231,7 @@ def format_for_display(data: dict) -> str:
 
 ```
 
-### 輸出變量
+### 4. 輸出變量
 ```YAML
 輸出變數 1:
   變數名: status
