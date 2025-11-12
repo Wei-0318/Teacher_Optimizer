@@ -124,6 +124,108 @@
 
 <img src="/APP/S1-3.png" width="40%">
 
+### 輸入變量
+
+### 代碼
+```python
+def main(teacher_output: str) -> dict:
+    """
+    解析老師的輸出，提取結構化數據
+    """
+    import json
+    import re
+    
+    try:
+        # 嘗試找到JSON部分（處理可能的額外文字）
+        json_match = re.search(r'\{.*\}', teacher_output, re.DOTALL)
+        
+        if json_match:
+            json_str = json_match.group()
+            data = json.loads(json_str)
+            
+            # 驗證必要欄位
+            required_fields = ['problem_analysis', 'optimized_question', 
+                             'extended_questions', 'knowledge_structure']
+            
+            for field in required_fields:
+                if field not in data:
+                    raise ValueError(f"Missing required field: {field}")
+            
+            # 格式化輸出供後續使用（成功時也返回所有欄位）
+            return {
+                "status": "success",
+                "parsed_data": data,
+                "main_question": data['optimized_question']['refined_version'],
+                "extended_questions_list": [
+                    q['question'] for q in data['extended_questions']
+                ],
+                "formatted_output": format_for_display(data),
+                "error_message": "",  # 成功時為空字串
+                "raw_output": teacher_output  # ← 添加這個
+            }
+        else:
+            raise ValueError("No JSON found in output")
+            
+    except json.JSONDecodeError as e:
+        return {
+            "status": "error",
+            "error_message": f"JSON解析失敗: {str(e)}",
+            "raw_output": teacher_output,
+            "main_question": "",
+            "extended_questions_list": [],
+            "formatted_output": f"解析錯誤：{str(e)}",
+            "parsed_data": {}
+        }
+    except Exception as e:
+        return {
+            "status": "error", 
+            "error_message": str(e),
+            "raw_output": teacher_output,
+            "main_question": "",
+            "extended_questions_list": [],
+            "formatted_output": f"處理錯誤：{str(e)}",
+            "parsed_data": {}
+        }
+
+def format_for_display(data: dict) -> str:
+    """
+    將數據格式化為易讀的文本
+    """
+    output = []
+    
+    # 問題分析
+    analysis = data['problem_analysis']
+    output.append("📊 **問題分析**")
+    output.append(f"- 核心概念：{analysis['core_concept']}")
+    output.append(f"- 複雜度：{analysis['complexity_level']}")
+    output.append(f"- 學習意圖：{analysis['learner_intent']}\n")
+    
+    # 優化後的問題
+    optimized = data['optimized_question']
+    output.append("🎯 **優化後的問題**")
+    output.append(f"主要問題：{optimized['refined_version']}")
+    output.append(f"背景說明：{optimized['context']}")
+    output.append(f"討論範圍：{optimized['scope']}\n")
+    
+    # 延伸問題
+    output.append("🔍 **延伸探討方向**")
+    for i, q in enumerate(data['extended_questions'], 1):
+        output.append(f"\n{i}. [{q['perspective']}]")
+        output.append(f"   問題：{q['question']}")
+        output.append(f"   價值：{q['learning_value']}")
+    
+    # 知識結構
+    knowledge = data['knowledge_structure']
+    output.append("\n📚 **知識架構**")
+    output.append(f"- 主要領域：{knowledge['primary_domain']}")
+    output.append(f"- 相關領域：{', '.join(knowledge['related_fields'])}")
+    output.append(f"- 前置知識：{', '.join(knowledge['prerequisites'])}")
+    output.append(f"- 進階主題：{', '.join(knowledge['advanced_topics'])}")
+    
+    return "\n".join(output)
+
+```
+
 ### 輸出變量
 ```YAML
 輸出變數 1:
