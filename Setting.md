@@ -284,6 +284,14 @@ def format_for_display(data: dict) -> str:
 
 
 ### Langfuse
+2. 指標儀表板（Metrics）
+- 總運行次數
+- 平均響應時間
+- 成功率
+- 總成本
+- Token 使用量
+<img src="/APP/S1-8.png" width="100%">
+
 1. 追蹤視圖（Traces）
 ```YAML
 運行 ID: xxxxx
@@ -306,15 +314,5 @@ def format_for_display(data: dict) -> str:
    └─ 輸出: "📊 **問題分析**..."
 ```
 <img src="/APP/S1-7.png" width="100%">
-
-
-2. 指標儀表板（Metrics）
-- 總運行次數
-- 平均響應時間
-- 成功率
-- 總成本
-- Token 使用量
-<img src="/APP/S1-8.png" width="100%">
-
 
 3. 評分功能（Scores）
