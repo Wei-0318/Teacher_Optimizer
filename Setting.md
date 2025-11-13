@@ -272,11 +272,16 @@ def format_for_display(data: dict) -> str:
 
 ## 6️⃣ 監控
 ### Dify 的監控 & 日誌
-- 日誌：運行的詳情 & 結果
+<img src="/APP/S1-5.png" width="100%">
+
 - 全部訊息數
 - 活躍使用者數
 - 費用消耗（Token）
 - 平均使用者呼叫次數
+- 日誌：運行的詳情 & 結果
+
+<img src="/APP/S1-6.png" width="100%">
+
 
 ### Langfuse
 1. 追蹤視圖（Traces）
@@ -300,6 +305,8 @@ def format_for_display(data: dict) -> str:
 └─ 結束
    └─ 輸出: "📊 **問題分析**..."
 ```
+<img src="/APP/S1-7.png" width="100%">
+
 
 2. 指標儀表板（Metrics）
 - 總運行次數
@@ -307,16 +314,7 @@ def format_for_display(data: dict) -> str:
 - 成功率
 - 總成本
 - Token 使用量
+<img src="/APP/S1-8.png" width="100%">
+
 
 3. 評分功能（Scores）
-
-## 7️⃣ 
-
-## 8️⃣ 
-
-
-
-
-
-
-
