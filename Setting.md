@@ -284,7 +284,7 @@ def format_for_display(data: dict) -> str:
 
 
 ### Langfuse
-2. 指標儀表板（Metrics）
+1. 指標儀表板（Metrics）
 - 總運行次數
 - 平均響應時間
 - 成功率
@@ -292,7 +292,7 @@ def format_for_display(data: dict) -> str:
 - Token 使用量
 <img src="/APP/S1-8.png" width="100%">
 
-1. 追蹤視圖（Traces）
+2. 追蹤視圖（Traces）
 ```YAML
 運行 ID: xxxxx
 時間: 2024-01-01 10:30:25
