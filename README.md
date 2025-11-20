@@ -3,6 +3,8 @@
 # 👩‍🏫 Teacher_Optimizer
 提問 --> 老師分析 --> 提取問題重心 & 解答
 
+[![Built with](https://img.shields.io/badge/Built%20with-Stima%20API-blueviolet?logo=robot)](https://api.stima.tech)
+
 </div>
 
 ## ✨ 提示詞
